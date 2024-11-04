@@ -124,9 +124,13 @@ build_cursor() {
     # Platform-specific adjustments for Linux
     cp -R "${cursor_extract_dir}/usr" "$cursor_build_dir/"
     cp "${cursor_extract_dir}/AppRun" "$cursor_build_dir/"
+    chmod +x "$cursor_build_dir/AppRun"
     cp "${cursor_extract_dir}/.DirIcon" "$cursor_build_dir/"
 
     # Rename binaries
+    if [ -f "$cursor_build_dir/code" ]; then
+        mv "$cursor_build_dir/code" "$cursor_build_dir/cursor"
+    fi
     if [ -f "$cursor_build_dir/bin/code" ]; then
         mv "$cursor_build_dir/bin/code" "$cursor_build_dir/bin/cursor"
     fi
